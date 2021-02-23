@@ -13,6 +13,7 @@ var authJwtController = require('./auth_jwt');
 db = require('./db')(); //hack
 var jwt = require('jsonwebtoken');
 var cors = require('cors');
+require('dotenv').config()
 
 var app = express();
 app.use(cors());
@@ -61,7 +62,7 @@ router.post('/signin', function (req, res) {
     if (!user) {
         res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
     } else {
-        if (req.body.password == user.password) {
+        if (req.body.password === user.password) {
             var userToken = { id: user.id, username: user.username };
             var token = jwt.sign(userToken, process.env.SECRET_KEY);
             res.json ({success: true, token: 'JWT ' + token});
