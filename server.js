@@ -13,7 +13,6 @@ var authJwtController = require('./auth_jwt');
 db = require('./db')(); //hack
 var jwt = require('jsonwebtoken');
 var cors = require('cors');
-require('dotenv').config()
 
 var app = express();
 app.use(cors());
